@@ -15,12 +15,12 @@
   transition: all 0.2s ease-out;
 }
 
-.popup__save-button {
+.popup__save-button:hover {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
 @media (max-width: 320px) {
-  .popup__save {
+  .popup__save-button {
     padding: 14px 0;
     height: 46px;
     font-size: 14px;
