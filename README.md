@@ -1,17 +1,20 @@
 # Проект: Место
 
-### Обзор
+### Краткое описание
 
-* Figma
-* Картинки
+Небольша страничка с иммитацией личного профиля и фотогалереи с одной точкой перелома на 688px.
 
-**Figma**
+### Технологии
 
-* [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
+- HTML
+- CSS
+- JS
+- BEM
 
-**Картинки**
+### GH Pages
 
-Доставать картинки предстоит из Фигмы. Это расхожая практика, поэтому полезно потренироваться.
-Не забудьте [оптимизировать картинки](https://tinypng.com/), чтобы ваш сайт загружался быстрее.
+- [Ссылка на GH Pages](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
 
-Удачи!
+### Проект на Figma
+
+- [Ссылка на Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
