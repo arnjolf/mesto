@@ -7,3 +7,10 @@
   text-align: left;
   color: #545454;
 }
+
+@media (max-width: 688px) {
+  .footer__copyright{
+    font-size: 14px;
+    line-height: 17px;
+  }
+}
