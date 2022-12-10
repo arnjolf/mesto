@@ -3,7 +3,7 @@
   border-bottom: 1px solid rgba(84, 84, 84, 0.7);
 }
 
-@media (max-width: 320px) {
+@media (max-width: 698px) {
   .header {
     margin: 28px 0 0;
   }

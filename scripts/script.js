@@ -11,9 +11,9 @@ let jobInput = formElement.querySelector('#popup__job');
 let popup = document.querySelector('.popup');
 
 function popupOpen() {
-  popup.classList.add('popup_opened');
   nameInput.value = profileName.textContent;;
   jobInput.value = profileJob.textContent;;
+  popup.classList.add('popup_opened');
 }
 
 function popupClose() {

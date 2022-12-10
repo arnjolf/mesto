@@ -6,7 +6,7 @@
   padding: 0 24px;
 }
 
-@media (max-width: 320px) {
+@media (max-width: 698px) {
   .wrapper {
     padding: 0;
   }

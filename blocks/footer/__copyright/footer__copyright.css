@@ -8,7 +8,7 @@
   color: #545454;
 }
 
-@media (max-width: 688px) {
+@media (max-width: 698px) {
   .footer__copyright{
     font-size: 14px;
     line-height: 17px;
