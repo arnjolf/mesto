@@ -17,8 +17,10 @@
   opacity: 0.6;
 }
 
-@media (max-width: 320px) {
+@media (max-width: 698px) {
   .popup__close {
+    object-fit: cover;
+    padding: 0;
     width: 20px;
     height: 20px;
     top: -36px;
