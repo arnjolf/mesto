@@ -20,6 +20,7 @@
 @media (max-width: 698px) {
   .popup__close {
     object-fit: cover;
+    background-size: cover;
     padding: 0;
     width: 20px;
     height: 20px;
