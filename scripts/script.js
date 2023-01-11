@@ -109,31 +109,36 @@ function openPopup(currentPopup) {
   currentPopup.classList.add("popup_opened");
 }
 
-function closePopup(event) {
-  event.target.closest(".popup").classList.remove("popup_opened");
+function closePopup(currentPopup) {
+  currentPopup.classList.remove("popup_opened");
+}
+
+function closePopupDomElement(event) {
+  const currentPopup = event.target.closest(".popup");
+  closePopup(currentPopup);
 }
 
 function handleFormSubmit(event) {
   event.preventDefault();
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
-  closePopup(event);
+  closePopupDomElement(event);
 }
 
 function newCardSubmit(event) {
   event.preventDefault();
   const newCardName = placeName.value;
   const newCardLink = cardImage.value;
+  addNewCard(newCardName, newCardLink);
+  closePopupDomElement(event);
   placeName.value = "";
   cardImage.value = "";
-  addNewCard(newCardName, newCardLink);
-  closePopup(event);
 }
 
 buttonEditProfile.addEventListener("click", openPopupProfile);
 buttonAddNewCard.addEventListener("click", openPopupCard);
-buttonClosePopupCard.addEventListener("click", closePopup);
-buttonClosePopupProfile.addEventListener("click", closePopup);
-buttonClosePopupImage.addEventListener("click", closePopup);
+buttonClosePopupCard.addEventListener("click", closePopupDomElement);
+buttonClosePopupProfile.addEventListener("click", closePopupDomElement);
+buttonClosePopupImage.addEventListener("click", closePopupDomElement);
 profileForm.addEventListener("submit", handleFormSubmit);
 addCardForm.addEventListener("submit", newCardSubmit);
