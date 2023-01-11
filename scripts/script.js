@@ -92,7 +92,7 @@ function openCard(event) {
     .querySelector(".element__place").textContent;
   popupImage.alt = thisCardName;
   popupPlaceName.textContent = thisCardName;
-  cardImagePopup.classList.add("popup_opened");
+  openPopup(cardImagePopup);
 }
 
 function openPopupProfile(event) {
