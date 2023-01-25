@@ -135,6 +135,34 @@ function newCardSubmit(event) {
   cardImage.value = "";
 }
 
+function closePopupListeners() {
+  const popupList = Array.from(document.querySelectorAll(".popup"));
+  closePopupByOverlay(popupList);
+  closePopupEscapeBtn(popupList);
+}
+
+function closePopupByOverlay(popupList) {
+  popupList.forEach((element) => {
+    element.addEventListener("mousedown", function (evt) {
+      if (!evt.target.closest(".popup__container")) {
+        closePopupDomElement(evt);
+      }
+    });
+  });
+}
+
+function closePopupEscapeBtn(popupList) {
+  popupList.forEach((element) => {
+    document.addEventListener("keydown", function (evt) {
+      if (element.classList.contains("popup_opened") && evt.key === "Escape") {
+        closePopup(element);
+      }
+    });
+  });
+}
+
+closePopupListeners();
+
 buttonEditProfile.addEventListener("click", openPopupProfile);
 buttonAddNewCard.addEventListener("click", openPopupCard);
 buttonClosePopupCard.addEventListener("click", closePopupDomElement);

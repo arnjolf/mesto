@@ -1,5 +1,5 @@
 .popup__input {
-  margin: 0 0 30px;
+  margin: 0 0 5px;
   height: 14px;
   border: none;
   padding: 0 0 13px 0;
@@ -12,12 +12,12 @@
   letter-spacing: 0em;
 }
 
-.popup__input:last-of-type {
+/* .popup__input:last-of-type {
   margin: 0 0 48px 0;
-}
+} */
 
-@media (max-width: 698px) {
+/* @media (max-width: 698px) {
   .popup__input:last-of-type {
     margin: 0 0 41px 0;
   }
-}
+} */

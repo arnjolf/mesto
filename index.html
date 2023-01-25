@@ -80,15 +80,21 @@
             class="popup__input"
             id="popup__name"
             name="profile-edit-name"
+            minlength="2"
+            maxlength="40"
             required
           />
+          <span class="popup__name-error popup__error"></span>
           <input
             type="text"
             class="popup__input"
             id="popup__job"
             name="profile-edit-job"
+            minlength="2"
+            maxlength="200"
             required
           />
+          <span class="popup__job-error popup__error"></span>
           <button type="submit" class="popup__save-button">Сохранить</button>
         </form>
       </div>
@@ -101,7 +107,7 @@
           aria-label="закрыть попап"
         ></button>
         <h2 class="popup__text">Новое место</h2>
-        <form class="popup__form" name="profile-edit-form">
+        <form class="popup__form" name="profile-edit-form" novalidate>
           <input
             type="text"
             class="popup__input"
@@ -109,15 +115,19 @@
             name="profile-edit-name"
             placeholder="Название"
             required
+            minlength="2"
+            maxlength="30"
           />
+          <span class="place-name-error popup__error"></span>
           <input
-            type="text"
+            type="url"
             class="popup__input"
             id="card-image"
             name="profile-edit-job"
             placeholder="Ссылка на картинку"
             required
           />
+          <span class="card-image-error popup__error"></span>
           <button type="submit" class="popup__save-button">Создать</button>
         </form>
       </div>
@@ -134,5 +144,6 @@
       </div>
     </div>
     <script src="./scripts/script.js"></script>
+    <script src="./scripts/validate.js"></script>
   </body>
 </html>
