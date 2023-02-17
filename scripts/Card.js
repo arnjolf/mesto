@@ -1,12 +1,18 @@
+import { openPopup, cardImagePopup } from "./index.js";
+
+const popupImage = document.querySelector(".popup__image");
+const popupPlaceName = document.querySelector(".popup__place-name");
+
 class Card {
   constructor(obj, selector) {
     this.name = obj.name;
     this.link = obj.link;
+    this.selector = selector;
   }
 
   _getCard() {
     const template = document
-      .querySelector("#card-template")
+      .querySelector(`${this.selector}`)
       .content.querySelector(".element")
       .cloneNode(true);
     console.log(template);
@@ -14,29 +20,34 @@ class Card {
   }
 
   _setEventListeners() {
-    this._likeButton();
-    this._deleteButton();
-    this._openImage();
-  }
-
-  _likeButton() {
     this._card
       .querySelector(".element__like-button")
-      .addEventListener("click", likeCard);
-  }
+      .addEventListener("click", this._likeCard);
 
-  _deleteButton() {
     this._card
       .querySelector(".element__trash-can")
-      .addEventListener("click", deleteCard);
-  }
+      .addEventListener("click", this._deleteCard);
 
-  _openImage() {
     this._card
       .querySelector(".element__image")
       .addEventListener("click", () => {
-        openCard(this.name, this.link);
+        this._openCard(this.name, this.link);
       });
+  }
+
+  _deleteCard() {
+    this.closest(".element").remove();
+  }
+
+  _likeCard() {
+    this.classList.toggle("element__like-button_active");
+  }
+
+  _openCard() {
+    popupImage.src = this.link;
+    popupImage.alt = this.name;
+    popupPlaceName.textContent = this.name;
+    openPopup(cardImagePopup);
   }
 
   generate() {
@@ -52,22 +63,6 @@ class Card {
     console.log(this._card);
     return this._card;
   }
-}
-
-function deleteCard(event) {
-  console.log(event.target.parentNode);
-  event.target.closest(".element").remove();
-}
-
-function likeCard(event) {
-  event.target.classList.toggle("element__like-button_active");
-}
-
-function openCard(name, link) {
-  popupImage.src = link;
-  popupImage.alt = name;
-  popupPlaceName.textContent = name;
-  openPopup(cardImagePopup);
 }
 
 export { Card };
