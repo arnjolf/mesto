@@ -80,11 +80,4 @@ class FormValidator {
     });
   }
 }
-
-const formList = Array.from(
-  document.querySelectorAll(`${validateConfig.formSelector}`)
-);
-formList.forEach((item) => {
-  const form = new FormValidator(validateConfig, item);
-  form.enableValidation();
-});
+export { validateConfig, FormValidator };
