@@ -18,6 +18,8 @@ const newCardContainer = newCardPopup.querySelector(".popup__container");
 const placeName = newCardContainer.querySelector("#place-name");
 const cardImage = newCardContainer.querySelector("#card-image");
 
+const popupImage = document.querySelector(".popup__image");
+const popupPlaceName = document.querySelector(".popup__place-name");
 const cardImagePopup = document.querySelector("#card-image__popup");
 
 const cardsGallery = document.querySelector(".elements");
@@ -85,8 +87,6 @@ function submitNewCard(event) {
   newCardItem.name = placeName.value;
   newCardItem.link = cardImage.value;
   addNewCard(newCardItem);
-  placeName.value = "";
-  cardImage.value = "";
   closePopup(newCardPopup);
 }
 
@@ -122,4 +122,4 @@ buttonAddNewCard.addEventListener("click", openPopupCard);
 profileContainer.addEventListener("submit", submitHandleForm);
 newCardContainer.addEventListener("submit", submitNewCard);
 
-export { openPopup, cardImagePopup };
+export { openPopup, cardImagePopup, popupImage, popupPlaceName };

@@ -1,7 +1,9 @@
-import { openPopup, cardImagePopup } from "./index.js";
-
-const popupImage = document.querySelector(".popup__image");
-const popupPlaceName = document.querySelector(".popup__place-name");
+import {
+  openPopup,
+  cardImagePopup,
+  popupImage,
+  popupPlaceName,
+} from "./index.js";
 
 class Card {
   constructor(obj, selector) {
@@ -28,11 +30,9 @@ class Card {
       .querySelector(".element__trash-can")
       .addEventListener("click", this._deleteCard);
 
-    this._card
-      .querySelector(".element__image")
-      .addEventListener("click", () => {
-        this._openCard(this.name, this.link);
-      });
+    this._cardImage.addEventListener("click", () => {
+      this._openCard(this.name, this.link);
+    });
   }
 
   _deleteCard() {
@@ -52,13 +52,13 @@ class Card {
 
   generate() {
     this._card = this._getCard();
+    this._cardImage = this._card.querySelector(".element__image");
     this._setEventListeners();
 
-    const imgElement = this._card.querySelector(".element__image");
     const nameElement = this._card.querySelector(".element__place");
 
-    imgElement.src = this.link;
-    imgElement.alt = this.link;
+    this._cardImage.src = this.link;
+    this._cardImage.alt = this.link;
     nameElement.textContent = this.name;
     console.log(this._card);
     return this._card;
