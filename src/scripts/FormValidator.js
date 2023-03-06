@@ -19,7 +19,7 @@ class FormValidator {
   }
 
   enableValidation() {
-    this._formElement.addEventListener("sumbit", function (evt) {
+    this._formElement.addEventListener("submit", function (evt) {
       evt.preventDefault();
     });
     this._setEventListeners();
