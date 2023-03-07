@@ -1,21 +1,19 @@
-import { validateConfig } from "./constants.js";
-
 class FormValidator {
   constructor(config, formElement) {
-    (this._config = config),
-      (this._formElement = formElement),
-      (this._formSelector = config._formSelector),
-      (this._inputSelector = config.inputSelector),
-      (this._submitButtonSelector = config.submitButtonSelector),
-      (this._inactiveButtonClass = config.inactiveButtonClass),
-      (this._inputErrorClass = config.inputErrorClass),
-      (this._errorClass = config.errorClass),
-      (this._buttonElement = this._formElement.querySelector(
-        `${this._submitButtonSelector}`
-      )),
-      (this._inputList = Array.from(
-        this._formElement.querySelectorAll(`${this._inputSelector}`)
-      ));
+    this._config = config;
+    this._formElement = formElement;
+    this._formSelector = config._formSelector;
+    this._inputSelector = config.inputSelector;
+    this._submitButtonSelector = config.submitButtonSelector;
+    this._inactiveButtonClass = config.inactiveButtonClass;
+    this._inputErrorClass = config.inputErrorClass;
+    this._errorClass = config.errorClass;
+    this._buttonElement = this._formElement.querySelector(
+      this._submitButtonSelector
+    );
+    this._inputList = Array.from(
+      this._formElement.querySelectorAll(this._inputSelector)
+    );
   }
 
   enableValidation() {
@@ -84,4 +82,4 @@ class FormValidator {
     this._toggleButtonState();
   }
 }
-export { validateConfig, FormValidator };
+export { FormValidator };

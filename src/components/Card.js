@@ -1,14 +1,14 @@
 class Card {
   constructor(obj, selector, handleCardClick) {
-    this.name = obj.name;
-    this.link = obj.link;
-    this.selector = selector;
-    this.handleCardClick = handleCardClick;
+    this._name = obj.name;
+    this._link = obj.link;
+    this._selector = selector;
+    this._handleCardClick = handleCardClick;
   }
 
   _getCard() {
     const template = document
-      .querySelector(`${this.selector}`)
+      .querySelector(this._selector)
       .content.querySelector(".element")
       .cloneNode(true);
     return template;
@@ -21,15 +21,15 @@ class Card {
 
     this._card
       .querySelector(".element__trash-can")
-      .addEventListener("click", this._deleteCard);
+      .addEventListener("click", this._deleteCard.bind(this._card));
 
     this._cardImage.addEventListener("click", () => {
-      this.handleCardClick(this.name, this.link);
+      this._handleCardClick(this._name, this._link);
     });
   }
 
   _deleteCard() {
-    this.closest(".element").remove();
+    this.remove();
   }
 
   _likeCard() {
@@ -43,9 +43,9 @@ class Card {
 
     const nameElement = this._card.querySelector(".element__place");
 
-    this._cardImage.src = this.link;
-    this._cardImage.alt = this.link;
-    nameElement.textContent = this.name;
+    this._cardImage.src = this._link;
+    this._cardImage.alt = this._link;
+    nameElement.textContent = this._name;
     return this._card;
   }
 }
