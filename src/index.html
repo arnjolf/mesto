@@ -24,7 +24,11 @@
       <main class="main">
         <section class="profile">
           <div class="profile__avatar-place">
-            <img src="" alt="Аватар профиля" class="profile__avatar" />
+            <img
+              src="<%=require('./images/image-placeholder.png')%>"
+              alt="Аватар профиля"
+              class="profile__avatar"
+            />
           </div>
           <div class="profile__info">
             <h1 class="profile__name"></h1>
@@ -154,7 +158,11 @@
           type="button"
           aria-label="закрыть попап"
         ></button>
-        <img class="popup__image" alt="" src="" />
+        <img
+          class="popup__image"
+          alt="placeholder"
+          src="<%=require('./images/image-placeholder.png')%>"
+        />
         <h2 class="popup__place-name"></h2>
       </div>
     </div>
@@ -187,12 +195,12 @@
           <input
             type="url"
             class="popup__input"
-            id="card-image"
+            id="avatar-src"
             name="avatar-src"
             placeholder="Ссылка на картинку"
             required
           />
-          <span class="card-image-error popup__error"></span>
+          <span class="avatar-src-error popup__error"></span>
           <button
             type="submit"
             class="popup__save-button"
