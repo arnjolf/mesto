@@ -1,5 +1,29 @@
 import "./index.css";
-import { validateConfig } from "../utils/constants.js";
+import {
+  validateConfig,
+  buttonEditProfile,
+  buttonAddNewCard,
+  profilePopupContainer,
+  nameInput,
+  jobInput,
+  cardPopupContainer,
+  cardsGallery,
+  cardPopupSelector,
+  profilePopupSelector,
+  imagePopupSelector,
+  nameSelector,
+  statusSelector,
+  deleteCardPopupSelector,
+  changeAvatarSelector,
+  changeAvatarContainer,
+  changeAvatarPopupContainer,
+  profileSaveButton,
+  cardSaveButton,
+  avatarSaveButton,
+  profileAvatar,
+  profileName,
+  profileAbout,
+} from "../utils/constants.js";
 import { Card } from "../components/Card.js";
 import { FormValidator } from "../components/FormValidator.js";
 import Section from "../components/Section.js";
@@ -9,48 +33,7 @@ import UserInfo from "../components/UserInfo.js";
 import Api from "../components/Api";
 import Popup from "../components/Popup";
 
-const buttonEditProfile = document.querySelector(".profile__edit-button");
-const buttonAddNewCard = document.querySelector(".profile__add-button");
-
-const profilePopupElement = document.querySelector("#profile__popup");
-const profilePopupContainer =
-  profilePopupElement.querySelector(".popup__container");
-const nameInput = profilePopupContainer.querySelector("#popup__name");
-const jobInput = profilePopupContainer.querySelector("#popup__job");
-
-const cardPopupElement = document.querySelector("#add-card__popup");
-const cardPopupContainer = cardPopupElement.querySelector(".popup__container");
-const cardsGallery = ".elements";
-
-const cardPopupSelector = "#add-card__popup";
-const profilePopupSelector = "#profile__popup";
-const imagePopupSelector = "#card-image__popup";
-const nameSelector = ".profile__name";
-const statusSelector = ".profile__job";
-const deleteCardPopupSelector = "#delete-card__popup";
-const changeAvatarSelector = "#change-avatar__popup";
-const changeAvatarContainer = document.querySelector(".profile__avatar-place");
-const changeAvatarPopupElement = document.querySelector(
-  "#change-avatar__popup"
-);
-const changeAvatarPopupContainer =
-  changeAvatarPopupElement.querySelector(".popup__container");
-
-//Save Buttons
-const profileSaveButton = profilePopupElement.querySelector(
-  ".popup__save-button"
-);
-const cardSaveButton = cardPopupElement.querySelector(".popup__save-button");
-const avatarSaveButton = changeAvatarPopupElement.querySelector(
-  ".popup__save-button"
-);
-
-const profileAvatar = document.querySelector(".profile__avatar");
-const profileName = document.querySelector(nameSelector);
-const profileAbout = document.querySelector(statusSelector);
-
 let currentUserId;
-
 const api = new Api(
   "https://mesto.nomoreparties.co/v1/cohort-61",
   "0811e36d-148a-4352-a51a-0b6cc8b0cc05"
