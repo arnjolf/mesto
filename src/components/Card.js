@@ -4,10 +4,8 @@ class Card {
     currentUserId,
     selector,
     handleCardClick,
-    deleteCardApi,
-    likeCardApi,
-    dislikeCardApi,
-    deleteCardPopup
+    deleteCardHandler,
+    likeCardHandler
   ) {
     this._name = obj.name;
     this._link = obj.link;
@@ -15,14 +13,12 @@ class Card {
     this._selector = selector;
     this._handleCardClick = handleCardClick;
     this._isOwner = currentUserId === obj.owner._id;
-    this._deleteCardApi = deleteCardApi;
-    this._likeCardApi = likeCardApi;
-    this._dislikeCardApi = dislikeCardApi;
     this._id = obj._id;
     this._isLiked = obj.likes.some((element) => {
       return element._id === currentUserId;
     });
-    this._deleteCardPopup = deleteCardPopup;
+    this._deleteCardHandler = deleteCardHandler;
+    this._likeCardHandler = likeCardHandler;
   }
 
   _getCard() {
@@ -46,34 +42,17 @@ class Card {
   }
 
   _deleteCard() {
-    this._deleteCardPopup.open();
-    document.addEventListener("click", (evt) => {
-      if (evt.target.id === "card__delete-button") {
-        this._deleteCardApi(this._id)
-          .then(() => {
-            this._card.remove();
-          })
-          .finally(() => {
-            this._deleteCardPopup.close();
-          });
-      }
-    });
+    this._deleteCardHandler(this._card, this._id);
   }
 
   _likeCard() {
-    if (!this._isLiked) {
-      this._likeCardApi(this._id).then((res) => {
-        this._likesCounter.textContent =
-          parseInt(this._likesCounter.textContent) + 1;
-        this._likeButton.classList.add("element__like-button_active");
-      });
-    } else {
-      this._dislikeCardApi(this._id).then((res) => {
-        this._likesCounter.textContent =
-          parseInt(this._likesCounter.textContent) - 1;
-        this._likeButton.classList.remove("element__like-button_active");
-      });
-    }
+    this._likeCardHandler(
+      this._isLiked,
+      this._id,
+      this._likesCounter,
+      this._likeButton
+    );
+    this._isLiked = !this._isLiked;
   }
 
   generate() {

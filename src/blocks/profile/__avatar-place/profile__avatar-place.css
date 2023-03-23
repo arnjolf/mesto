@@ -24,3 +24,9 @@
 .profile__avatar-place:hover::after {
   opacity: 1;
 }
+
+@media (max-width: 698px) {
+  .profile__avatar-place {
+    margin: 0 auto;
+  }
+}
