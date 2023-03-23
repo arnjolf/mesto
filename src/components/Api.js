@@ -100,16 +100,6 @@ export default class Api {
       });
   }
 
-  getUserId() {
-    return fetch(`${this._basePath}/users/me`, {
-      headers: this._getHeaders(),
-    })
-      .then(this._getJson)
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-
   deleteCard(id) {
     return fetch(`${this._basePath}/cards/${id}`, {
       headers: this._getHeaders(),

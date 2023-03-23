@@ -5,7 +5,8 @@ class Card {
     selector,
     handleCardClick,
     deleteCardHandler,
-    likeCardHandler
+    likeCardApi,
+    dislikeCardApi
   ) {
     this._name = obj.name;
     this._link = obj.link;
@@ -18,7 +19,8 @@ class Card {
       return element._id === currentUserId;
     });
     this._deleteCardHandler = deleteCardHandler;
-    this._likeCardHandler = likeCardHandler;
+    this._likeCardApi = likeCardApi;
+    this._dislikeCardApi = dislikeCardApi;
   }
 
   _getCard() {
@@ -34,25 +36,55 @@ class Card {
       .querySelector(".element__like-button")
       .addEventListener("click", this._likeCard.bind(this));
 
-    this._trashCan.addEventListener("click", this._deleteCard.bind(this));
+    this._trashCan.addEventListener("click", this._deleteCardPopup.bind(this));
 
     this._cardImage.addEventListener("click", () => {
       this._handleCardClick(this._name, this._link);
     });
   }
 
-  _deleteCard() {
-    this._deleteCardHandler(this._card, this._id);
+  _deleteCardPopup() {
+    this._deleteCardHandler(this);
+  }
+
+  deleteCard() {
+    this._card.remove();
   }
 
   _likeCard() {
-    this._likeCardHandler(
-      this._isLiked,
-      this._id,
-      this._likesCounter,
-      this._likeButton
-    );
+    if (!this._isLiked) {
+      this._likeCardApi(this._id)
+        .then((res) => {
+          this._likesCounter.textContent = res.likes.length;
+          this._likeButton.classList.add("element__like-button_active");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      this._dislikeCardApi(this._id)
+        .then((res) => {
+          this._likesCounter.textContent = res.likes.length;
+          this._likeButton.classList.remove("element__like-button_active");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
     this._isLiked = !this._isLiked;
+  }
+
+  _loadImg() {
+    const img = new Image();
+    img.onload = () => {
+      this._cardImage.src = this._link;
+    };
+    img.onerror = () => {
+      this._link =
+        "https://avatars.mds.yandex.net/get-mpic/6780724/img_id5398870021742881284.jpeg/orig";
+      this._cardImage.src = this._link;
+    };
+    img.src = this._link;
   }
 
   generate() {
@@ -73,8 +105,8 @@ class Card {
     this._likesCounter = this._card.querySelector(".element__like-counter");
     const nameElement = this._card.querySelector(".element__place");
 
-    this._cardImage.src = this._link;
-    this._cardImage.alt = this._link;
+    this._loadImg();
+    this._cardImage.alt = this._name;
     nameElement.textContent = this._name;
     this._likesCounter.textContent = this._likesQuantity;
     return this._card;
