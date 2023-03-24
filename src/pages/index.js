@@ -52,7 +52,7 @@ const deleteCardPopup = new PopupDeleteCard(deleteCardPopupSelector, (card) => {
     .then(() => {
       card.deleteCard();
     })
-    .finally(() => {
+    .then(() => {
       deleteCardPopup.close();
     })
     .catch((err) => {
@@ -74,8 +74,7 @@ function createNewCard(item) {
       imagePopup.open(name, link);
     },
     deleteCardHandler,
-    likeCard,
-    dislikeCard
+    likeCardHandler
   );
   const cardElement = newCard.generate();
   return cardElement;
@@ -205,6 +204,26 @@ function likeCard(cardId) {
 
 function dislikeCard(cardId) {
   return api.dislikeCard(cardId);
+}
+
+function likeCardHandler(card) {
+  if (!card._isLiked) {
+    likeCard(card._id)
+      .then((res) => {
+        card.likeCardEvent(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  } else {
+    dislikeCard(card._id)
+      .then((res) => {
+        card.likeCardEvent(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 }
 
 function renderLoading(isLoading, element, initialText) {

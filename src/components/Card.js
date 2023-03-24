@@ -5,8 +5,7 @@ class Card {
     selector,
     handleCardClick,
     deleteCardHandler,
-    likeCardApi,
-    dislikeCardApi
+    likeCardHandler
   ) {
     this._name = obj.name;
     this._link = obj.link;
@@ -19,8 +18,7 @@ class Card {
       return element._id === currentUserId;
     });
     this._deleteCardHandler = deleteCardHandler;
-    this._likeCardApi = likeCardApi;
-    this._dislikeCardApi = dislikeCardApi;
+    this._likeCardHandler = likeCardHandler;
   }
 
   _getCard() {
@@ -52,25 +50,12 @@ class Card {
   }
 
   _likeCard() {
-    if (!this._isLiked) {
-      this._likeCardApi(this._id)
-        .then((res) => {
-          this._likesCounter.textContent = res.likes.length;
-          this._likeButton.classList.add("element__like-button_active");
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } else {
-      this._dislikeCardApi(this._id)
-        .then((res) => {
-          this._likesCounter.textContent = res.likes.length;
-          this._likeButton.classList.remove("element__like-button_active");
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
+    this._likeCardHandler(this);
+  }
+
+  likeCardEvent(res) {
+    this._likesCounter.textContent = res.likes.length;
+    this._likeButton.classList.toggle("element__like-button_active");
     this._isLiked = !this._isLiked;
   }
 
